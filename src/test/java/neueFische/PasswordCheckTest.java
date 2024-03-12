@@ -27,6 +27,7 @@ class PasswordCheckTest {
         // Then
         Assertions.assertEquals(true, actual);
     }
+    //#######################
 
     @Test
     void shouldReturnTrueIsLengthGreater8Char_WhenGiven_sicher20(){
@@ -48,6 +49,7 @@ class PasswordCheckTest {
         //Then
         Assertions.assertEquals(false, actual);
     }
+    //#######################
 
     @Test
     void shouldReturnTrue_WhenGivenHasDigits(){
@@ -69,6 +71,7 @@ class PasswordCheckTest {
         //Then
         Assertions.assertEquals(false, actual);
     }
+    //#######################
 
     @Test
     void shouldReturnTrue_WhenGivenHasUpperAndLowercaseCharacters(){
@@ -100,4 +103,29 @@ class PasswordCheckTest {
         // Then
         Assertions.assertEquals(false, actual);
     }
+    //#######################
+
+    @Test
+    void shouldReturnTrue_WhenGivenisInBlacklist(){
+        // Given
+        String inputPassword = "A2345678";
+        String[] blacklistArray = {"Geheim12", "A2345678", "Qwertzui"};
+        boolean expected = true ;
+        // When
+        boolean actual = PasswordCheck.isInBlacklist(inputPassword, blacklistArray);
+        // Then
+        Assertions.assertEquals(true, actual);
+    }
+    @Test
+    void shouldReturnTrue_WhenGivenisNotInBlacklist(){
+        // Given
+        String inputPassword = "AllesPrima1";
+        String[] blacklistArray = {"Geheim12", "A2345678", "Qwertzui"};
+        boolean expected = false ;
+        // When
+        boolean actual = PasswordCheck.isInBlacklist(inputPassword, blacklistArray);
+        // Then
+        Assertions.assertEquals(false, actual);
+    }
+    //#######################
 }

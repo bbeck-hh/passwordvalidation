@@ -5,6 +5,9 @@ public class PasswordCheck {
     public static void main(String[] args) {
         // Set password global here
         String password = "Sicher20";
+        // Set blacklist words here
+        String[] blacklistArray = {"Geheim12", "A2345678", "Qwertzui"};
+
 
         isPasswordNullorEmpty(password);
 
@@ -15,6 +18,8 @@ public class PasswordCheck {
         }
 
         hasUpperAndLowercaseChars(password);
+
+        isInBlacklist(password, blacklistArray);
     }
 
     public static boolean isPasswordNullorEmpty(String password) {
@@ -43,7 +48,7 @@ public class PasswordCheck {
         boolean hasLowercase = false;
 
         for (char character : password.toCharArray()) {
-            System.out.println("Zeichen: " + character);
+            //System.out.println("Zeichen: " + character);
             if (Character.isLowerCase(character)) {
                 hasLowercase = true;
             } else if(Character.isUpperCase(character)){
@@ -52,6 +57,15 @@ public class PasswordCheck {
         }
         if (hasUppercase && hasLowercase) {
             return true;
+        }
+        return false;
+    }
+
+    public static boolean isInBlacklist(String inputPassword, String[] blacklistArray) {
+        for (String entry : blacklistArray) {
+            if (entry.equals(inputPassword)) {
+                return true;
+            }
         }
         return false;
     }
