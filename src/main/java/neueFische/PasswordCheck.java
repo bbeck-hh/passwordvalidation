@@ -4,7 +4,7 @@ public class PasswordCheck {
 
     public static void main(String[] args) {
         // Set password global here
-        String password = "sicher20";
+        String password = "Sicher20";
 
         isPasswordNullorEmpty(password);
 
@@ -13,6 +13,8 @@ public class PasswordCheck {
         } else {
             System.out.println("Password is invalid. Should have a minimum length of 8 characters.");
         }
+
+        hasUpperAndLowercaseChars(password);
     }
 
     public static boolean isPasswordNullorEmpty(String password) {
@@ -36,5 +38,21 @@ public class PasswordCheck {
         return false; // No digit found
     }
 
+    public static boolean hasUpperAndLowercaseChars(String password) {
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
 
+        for (char character : password.toCharArray()) {
+            System.out.println("Zeichen: " + character);
+            if (Character.isLowerCase(character)) {
+                hasLowercase = true;
+            } else if(Character.isUpperCase(character)){
+                hasUppercase = true;
+            }
+        }
+        if (hasUppercase && hasLowercase) {
+            return true;
+        }
+        return false;
+    }
 }

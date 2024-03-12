@@ -69,4 +69,35 @@ class PasswordCheckTest {
         //Then
         Assertions.assertEquals(false, actual);
     }
+
+    @Test
+    void shouldReturnTrue_WhenGivenHasUpperAndLowercaseCharacters(){
+        // Given
+        String inputPassword = "Psssst";
+        boolean expected = true ;
+        // When
+        boolean actual = PasswordCheck.hasUpperAndLowercaseChars(inputPassword);
+        // Then
+        Assertions.assertEquals(true, actual);
+    }
+    @Test
+    void shouldReturnFalse_WhenGivenHasNoUppercaseCharacters(){
+        // Given
+        String inputPassword = "sssst";
+        boolean expected = false ;
+        // When
+        boolean actual = PasswordCheck.hasUpperAndLowercaseChars(inputPassword);
+        // Then
+        Assertions.assertEquals(false, actual);
+    }
+    @Test
+    void shouldReturnFalse_WhenGivenHasNoLowercaseCharacters(){
+        // Given
+        String inputPassword = "PSST";
+        boolean expected = false ;
+        // When
+        boolean actual = PasswordCheck.hasUpperAndLowercaseChars(inputPassword);
+        // Then
+        Assertions.assertEquals(false, actual);
+    }
 }
