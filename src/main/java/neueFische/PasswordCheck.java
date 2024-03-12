@@ -6,15 +6,35 @@ public class PasswordCheck {
         // Set password global here
         String password = "sicher20";
 
-        if (isPasswordValid(password)) {
+        isPasswordNullorEmpty(password);
+
+        if (isPasswordLength(password)) {
             System.out.println("Password is valid. It has minimum length of 8 characters.");
         } else {
             System.out.println("Password is invalid. Should have a minimum length of 8 characters.");
         }
     }
 
-    public static boolean isPasswordValid(String password) {
+    public static boolean isPasswordNullorEmpty(String password) {
+        if (password == null || password.isEmpty()) {
+            return false;
+        }
+        return true; // Password is not NULL or empty
+    }
+
+    public static boolean isPasswordLength(String password) {
         return password != null && password.length() >= 8;
     }
+
+    public static boolean hasPasswordDigits(String password) {
+        for (char character : password.toCharArray()) {
+            if (Character.isDigit(character)) {
+                return true; // At least one digit found
+            }
+        }
+
+        return false; // No digit found
+    }
+
 
 }

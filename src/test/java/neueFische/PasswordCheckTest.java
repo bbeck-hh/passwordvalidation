@@ -4,14 +4,69 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PasswordCheckTest {
+
+    //String inputPassword = "sicher2";
+
     @Test
-    void shouldReturnCorrectOrIncorrect_WhenGiven_sicher20(){
+    void shouldReturnFalse_WhenGivenNullOrEmpty(){
         // Given
-        String input = "sicher20";
+        String inputPassword = ""; // null or ""
+        boolean expected = false;
+        // When
+        boolean actual = PasswordCheck.isPasswordNullorEmpty(inputPassword);
+        // Then
+        Assertions.assertEquals(false, actual);
+    }
+    @Test
+    void shouldReturnTrue_WhenGivenNotNullOrNotEmpty(){
+        // Given
+        String inputPassword = "1"; // Give me a sign
+        boolean expected = true;
+        // When
+        boolean actual = PasswordCheck.isPasswordNullorEmpty(inputPassword);
+        // Then
+        Assertions.assertEquals(true, actual);
+    }
+
+    @Test
+    void shouldReturnTrueIsLengthGreater8Char_WhenGiven_sicher20(){
+        // Given
+        String inputPassword = "sicher20";
         boolean expected = true ;
         //When
-        boolean actual = PasswordCheck.isPasswordValid(input);
+        boolean actual = PasswordCheck.isPasswordLength(inputPassword);
         //Then
         Assertions.assertEquals(true, actual);
+    }
+    @Test
+    void shouldReturnFalseIsLengthLess8Char_WhenGiven_sicher2(){
+        // Given
+        String inputPassword = "sicher2";
+        boolean expected = false ;
+        //When
+        boolean actual = PasswordCheck.isPasswordLength(inputPassword);
+        //Then
+        Assertions.assertEquals(false, actual);
+    }
+
+    @Test
+    void shouldReturnTrue_WhenGivenHasDigits(){
+        // Given
+        String inputPassword = "sicher20";
+        boolean expected = true ;
+        // When
+        boolean actual = PasswordCheck.hasPasswordDigits(inputPassword);
+        //Then
+        Assertions.assertEquals(true, actual);
+    }
+    @Test
+    void shouldReturnFalse_WhenGivenHasNoDigits(){
+        // Given
+        String inputPassword = "sicher";
+        boolean expected = false ;
+        // When
+        boolean actual = PasswordCheck.hasPasswordDigits(inputPassword);
+        //Then
+        Assertions.assertEquals(false, actual);
     }
 }
