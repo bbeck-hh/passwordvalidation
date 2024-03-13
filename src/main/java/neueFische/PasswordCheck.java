@@ -4,9 +4,11 @@ public class PasswordCheck {
 
     public static void main(String[] args) {
         // Set password global here
-        String password = "Psssst";
+        String password = "Psssst12@";
         // Set blacklist words here
-        String[] blacklistArray = {"Geheim12", "A2345678", "Qwertzui"};
+        String[] blacklistArray = { "Geheim12", "A2345678", "Qwertzui" };
+        // Sets of special characters
+        String specialCharacters = "@!%?";
 
         // Set default for validPassword
         boolean validPassword = true;
@@ -14,16 +16,20 @@ public class PasswordCheck {
         // Call each method
         validPassword = isPasswordNullorEmpty(password);
 
-        if(validPassword){
-            validPassword =  isPasswordLength(password);
+        if (validPassword) {
+            validPassword = isPasswordLength(password);
         }
 
-        if(validPassword){
-            validPassword =  hasUpperAndLowercaseChars(password);
+        if (validPassword) {
+            validPassword = hasUpperAndLowercaseChars(password);
         }
 
-        if(validPassword){
-            validPassword =  isInBlacklist(password, blacklistArray);
+        if (validPassword) {
+            validPassword = isInBlacklist(password, blacklistArray);
+        }
+
+        if (validPassword) {
+            validPassword = hasSpecialCharacters(password, specialCharacters);
         }
 
         passwordValid(validPassword);
@@ -38,11 +44,11 @@ public class PasswordCheck {
             System.out.println("Password is invalid.\n" +
                     " - Länge 8 Zeichen\n" +
                     " - Groß und Kleinbuchstaben\n" +
+                    " - Muss ein Sonderzeichen \" @, !,  %, ? \" enthalten \n" +
                     " - Mindestens eine Zahl\n" +
                     " - Sicheres Passwort");
         }
     }
-
 
     public static boolean isPasswordNullorEmpty(String password) {
         if (password == null || password.isEmpty()) {
@@ -69,10 +75,10 @@ public class PasswordCheck {
         boolean hasLowercase = false;
 
         for (char character : password.toCharArray()) {
-            //System.out.println("Zeichen: " + character);
+            // System.out.println("Zeichen: " + character);
             if (Character.isLowerCase(character)) {
                 hasLowercase = true;
-            } else if(Character.isUpperCase(character)){
+            } else if (Character.isUpperCase(character)) {
                 hasUppercase = true;
             }
         }
@@ -84,11 +90,24 @@ public class PasswordCheck {
 
     public static boolean isInBlacklist(String inputPassword, String[] blacklistArray) {
         for (String entry : blacklistArray) {
-            //System.out.println("Wort: " + entry);
+            // System.out.println("Wort: " + entry);
             if (entry.equals(inputPassword)) {
                 return false;
             }
         }
         return true;
+    }
+
+    public static boolean hasSpecialCharacters(String password, String specialCharacters) {
+        for (int i = 0; i < password.length(); i++) {
+            //System.out.println("Zeichen: " + password.charAt(i));
+            char letter = password.charAt(i);
+
+            // Check if the character is a special character
+            if (specialCharacters.contains(String.valueOf(letter))) {
+                return true; // Special character found
+            }
+        }
+        return false; // No digit found
     }
 }
