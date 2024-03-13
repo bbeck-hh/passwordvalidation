@@ -129,4 +129,17 @@ class PasswordCheckTest {
         Assertions.assertEquals(true, actual);
     }
     //#######################
+
+    @Test
+    void main_shouldReturnTrue_WhenGivenPasswordWithSpecialCharacters() {
+        // Given
+        String inputPassword = "AllesPrima!";
+        String specialCharacters = "@!%?";
+//		boolean expected = true ;
+        // When
+        boolean actual = PasswordCheck.hasSpecialCharacters(inputPassword, specialCharacters);
+        // Then
+        Assertions.assertEquals(true, actual);
+    }
+    // #######################
 }

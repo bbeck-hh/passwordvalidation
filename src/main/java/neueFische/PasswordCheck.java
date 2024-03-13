@@ -9,7 +9,6 @@ public class PasswordCheck {
         String[] blacklistArray = { "Geheim12", "A2345678", "Qwertzui" };
         // Sets of special characters
         String specialCharacters = "@!%?";
-
         // Set default for validPassword
         boolean validPassword = true;
 
