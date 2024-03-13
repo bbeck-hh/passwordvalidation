@@ -3,14 +3,17 @@ package neueFische;
 public class PasswordCheck {
 
     public static void main(String[] args) {
-        // Set password global here
-        String password = "Psssst12@";
-        // Set blacklist words here
-        String[] blacklistArray = { "Geheim12", "A2345678", "Qwertzui" };
-        // Sets of special characters
-        String specialCharacters = "@!%?";
         // Set default for validPassword
         boolean validPassword = true;
+
+        // Set password global here
+        String password = "Psssst12@";
+
+        // Set blacklist words here
+        String[] blacklistArray = { "Geheim12", "A2345678", "Qwertzui" };
+
+        // Sets of special characters
+        String specialCharacters = "@!%?";
 
         // Call each method
         validPassword = isPasswordNullorEmpty(password);
